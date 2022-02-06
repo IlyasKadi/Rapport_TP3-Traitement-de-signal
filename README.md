@@ -98,10 +98,9 @@ t=7s et t=8s (Commande : xline).
 
 ```matlab
 %-----------3----------
-% plot(t,y);
-% xline(7,'--r');
-% xline(8,'--r');
-fragment=y(7*Fs:8*Fs
+ plot(t,y);
+ xline(7,'--r');
+ xline(8,'--r');
 
 ```
 
@@ -121,7 +120,8 @@ Interprétez le résultat obtenu (Commande : xcorr).
 
 ```matlab
 %-----------1----------
-load('Ring.mat');
+[xcor,lags] = xcorr(y,fragment);
+plot(lags/Fs,xcor);
 
 ```
 
@@ -130,7 +130,15 @@ maximal, puis utilisez ce décalage pour faire apparaitre le fragment dans le si
 
 ```matlab
 %-----------1----------
-load('Ring.mat');
+
+[xcor,lags] = xcorr(y,fragment);
+[m,i]=max(abs(xcor));
+maxl=lags(i);
+
+seg=NaN(size(y));
+seg(maxl+1:maxl+length(fragment))=fragment;
+
+plot(t,y,t,seg);
 
 ```
 
