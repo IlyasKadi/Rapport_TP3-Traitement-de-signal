@@ -74,22 +74,65 @@ MATLAB. Le signal sonore qui fera l’objet de cet exercice est celui d’un ann
 tournant sur une table.
 
 1- Chargez dans l’espace de travail l’enregistrement correspondant en tapant la
-commande load('Ring.mat').
+
+```matlab
+%-----------1----------
+load('Ring.mat');
+
+```
 
 2- Tracez ce signal en fonction du temps, puis écoutez-le.
+
+```matlab
+%-----------2----------
+Ts =1/Fs;
+t =[0:Ts:(length(y)-1)*Ts] ;
+plot(t,y);
+
+sound(y,Fs);
+
+```
 
 3- En utilisant deux droites en pointillés rouges, repérez le morceau du signal entre
 t=7s et t=8s (Commande : xline).
 
-3- Récupérez ce morceau dans une variable nommée « Fragment », écoutez-le, puis
+```matlab
+%-----------3----------
+% plot(t,y);
+% xline(7,'--r');
+% xline(8,'--r');
+fragment=y(7*Fs:8*Fs
+
+```
+
+4- Récupérez ce morceau dans une variable nommée « Fragment », écoutez-le, puis
 tracez-le en fonction du temps.
 
-4- Calculez et tracez la corrélation croisée du signal complet et du fragment, puis
+```matlab
+%-----------4----------
+fragment=y(7*Fs:8*Fs);
+ sound(fragment,Fs);
+%  plot(fragment)
+
+```
+
+5- Calculez et tracez la corrélation croisée du signal complet et du fragment, puis
 Interprétez le résultat obtenu (Commande : xcorr).
 
-5- Déduisez la valeur du décalage pour lequel la corrélation entre les deux signaux est
+```matlab
+%-----------1----------
+load('Ring.mat');
+
+```
+
+6- Déduisez la valeur du décalage pour lequel la corrélation entre les deux signaux est
 maximal, puis utilisez ce décalage pour faire apparaitre le fragment dans le signal.
 
+```matlab
+%-----------1----------
+load('Ring.mat');
+
+```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -101,11 +144,29 @@ signaux en présence du bruit, en utilisant toujours cette notion de corrélatio
 1- Ajoutez un bruit blanc gaussien au signal de départ et aussi au fragment, puis
 tracez-les en fonction du temps.
 
+```matlab
+%-----------1----------
+load('Ring.mat');
+
+```
+
 2- Appliquez la fonction xcorr afin de calculer la corrélation croisée entre les deux
 signaux bruités, puis évaluez la capacité de cette mesure de détecter le fragment dans
 le signal en présence du bruit.
 
+```matlab
+%-----------1----------
+load('Ring.mat');
+
+```
+
 3- Retracez la partie du signal détecté. 
+
+```matlab
+%-----------1----------
+load('Ring.mat');
+
+```
 
 
 
