@@ -180,20 +180,24 @@ subplot(1,1,2);
  plot(fragment_noise);
 
 ```
+![111](https://user-images.githubusercontent.com/80456274/152687467-f3f4f9c6-2c1e-429c-831b-515e725ac90b.jpg)
+
 
 2- Appliquez la fonction xcorr afin de calculer la corrélation croisée entre les deux
 signaux bruités, puis évaluez la capacité de cette mesure de détecter le fragment dans
 le signal en présence du bruit.
 
 ```matlab
-%-----------1----------
+%-----------2----------
 figure(2);
 corr=xcorr(signal_noise,fragment_noise);
  subplot(1,2,1);
   plot(corr);
-  
 
 ```
+
+![11](https://user-images.githubusercontent.com/80456274/152687555-bf67baf1-0022-4e00-b918-fd6a4bd6e39a.jpg)
+
 
 3- Retracez la partie du signal détecté. 
 
@@ -207,6 +211,9 @@ corr=xcorr(signal_noise,fragment_noise);
   plot([delay+1:length(fragment_noise)+delay],fragment_noise,'r');
 
 ```
+
+![12](https://user-images.githubusercontent.com/80456274/152687337-85e375be-f976-4a22-9126-e372f01bc146.jpg)
+
 
 
 
