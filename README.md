@@ -92,6 +92,8 @@ plot(t,y);
 sound(y,Fs);
 
 ```
+![1](https://user-images.githubusercontent.com/80456274/152686487-01aca24a-931b-4f70-86a3-5906bfe63eec.jpg)
+
 
 3- En utilisant deux droites en pointillés rouges, repérez le morceau du signal entre
 t=7s et t=8s (Commande : xline).
@@ -103,6 +105,9 @@ t=7s et t=8s (Commande : xline).
  xline(8,'--r');
 
 ```
+
+![2](https://user-images.githubusercontent.com/80456274/152686495-21947afe-94fb-4925-bfa4-79edf2c8dd02.jpg)
+
 
 4- Récupérez ce morceau dans une variable nommée « Fragment », écoutez-le, puis
 tracez-le en fonction du temps.
@@ -116,6 +121,9 @@ plot(fragment)
 
 ```
 
+![3](https://user-images.githubusercontent.com/80456274/152686510-77b09f2e-a5a5-4cc1-ac08-e1e9e7a8d195.jpg)
+
+
 5- Calculez et tracez la corrélation croisée du signal complet et du fragment, puis
 Interprétez le résultat obtenu (Commande : xcorr).
 
@@ -125,6 +133,9 @@ Interprétez le résultat obtenu (Commande : xcorr).
 plot(lags/Fs,xcor);
 
 ```
+
+![4](https://user-images.githubusercontent.com/80456274/152686515-83a1592f-7e5a-4e5a-80ad-dff256c80189.jpg)
+
 
 6- Déduisez la valeur du décalage pour lequel la corrélation entre les deux signaux est
 maximal, puis utilisez ce décalage pour faire apparaitre le fragment dans le signal.
@@ -143,6 +154,9 @@ plot(t,y,t,seg);
 
 ```
 
+![5](https://user-images.githubusercontent.com/80456274/152686520-dbefbeed-6fb3-4b4f-8ecf-b78045a24585.jpg)
+
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
@@ -155,7 +169,15 @@ tracez-les en fonction du temps.
 
 ```matlab
 %-----------1----------
-load('Ring.mat');
+figure(1);
+ signal_noise = awgn(y,30)+y;
+ fragment_noise=awgn(fragment,30)+fragment;
+subplot(1,2,1);
+ plot(t,[y signal_noise]);
+ xline(7,'--r');
+ xline(8,'--r');
+subplot(1,1,2);
+ plot(fragment_noise);
 
 ```
 
@@ -165,15 +187,24 @@ le signal en présence du bruit.
 
 ```matlab
 %-----------1----------
-load('Ring.mat');
+figure(2);
+corr=xcorr(signal_noise,fragment_noise);
+ subplot(1,2,1);
+  plot(corr);
+  
 
 ```
 
 3- Retracez la partie du signal détecté. 
 
 ```matlab
-%-----------1----------
-load('Ring.mat');
+%-----------3----------
+  figure(3);
+  [m,d]=max(corr);     
+  delay=d-max(length(signal_noise),length(fragment_noise));  
+  plot(signal_noise);
+  hold on,
+  plot([delay+1:length(fragment_noise)+delay],fragment_noise,'r');
 
 ```
 
