@@ -110,8 +110,9 @@ tracez-le en fonction du temps.
 ```matlab
 %-----------4----------
 fragment=y(7*Fs:8*Fs);
- sound(fragment,Fs);
-%  plot(fragment)
+sound(fragment,Fs);
+
+plot(fragment)
 
 ```
 
@@ -119,7 +120,7 @@ fragment=y(7*Fs:8*Fs);
 Interprétez le résultat obtenu (Commande : xcorr).
 
 ```matlab
-%-----------1----------
+%-----------5----------
 [xcor,lags] = xcorr(y,fragment);
 plot(lags/Fs,xcor);
 
@@ -129,7 +130,7 @@ plot(lags/Fs,xcor);
 maximal, puis utilisez ce décalage pour faire apparaitre le fragment dans le signal.
 
 ```matlab
-%-----------1----------
+%-----------6----------
 
 [xcor,lags] = xcorr(y,fragment);
 [m,i]=max(abs(xcor));
